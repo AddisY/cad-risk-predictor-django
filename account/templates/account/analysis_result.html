@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Analysis result
+{% endblock title %}
+
+{% block content %}
+    {% if result == True %}
+        <h3>Based on the given data the probablilty of having CAD is high</h3>
+    {% else %}
+        <h3>Based on the given data the probablilty of having CAD is low </h3>
+    {% endif %}
+{% endblock content %}

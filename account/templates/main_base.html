@@ -1,0 +1,33 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'account/bootstrap-4/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'account/css/stylish-portfolio.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'account/font_awesome/css/fontawesome-all.css' %}"/>
+    {% block css-content %}
+    {% endblock css-content %}
+
+    <script src="{% static 'account/js/jquery3.3.1.slim.js' %}"></script>
+    <script src="{% static 'account/js/popper.min.js' %}"></script>
+    <script src="{% static 'account/bootstrap-4/js/bootstrap.min.js' %}"></script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+
+    <div class="row " >
+        {% block main-content %}
+
+        {% endblock main-content%}
+    </div>
+
+
+</body>
+</html>

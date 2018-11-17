@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title%} Home {% endblock title %}
+
+{% block content %}
+
+
+ <!-- Services -->
+    <section class="col-lg-12 content-section bg-primary text-white text-center" id="services">
+      <div class="container">
+        <div class="content-section-heading">
+          <h3 class="text-secondary mb-0">CAD </h3>
+          <h2 class="mb-5">Prediction services</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+            <span class="service-icon rounded-circle mx-auto mb-3">
+               <i class="fas fa-check"></i>
+            </span>
+            <h4>
+              <strong>Check symptoms</strong>
+            </h4>
+            <p class="text-faded mb-0">Easily check for your CAD status!</p>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+            <span class="service-icon rounded-circle mx-auto mb-3">
+              <i class="fa fa-cloud-upload-alt"></i>
+
+            </span>
+            <h4>
+              <strong>Analyze risk</strong>
+            </h4>
+            <p class="text-faded mb-0"> Upload your lab results and get your risk analysis quickly</p>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+            <span class="service-icon rounded-circle mx-auto mb-3">
+              <i class="far fa-save"></i>
+            </span>
+            <h4>
+              <strong>Save data</strong>
+            </h4>
+            <p class="text-faded mb-0">Save patients data to help up improve thousands of lives
+
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <span class="service-icon rounded-circle mx-auto mb-3">
+              <i class="fa fa-mobile-alt"></i>
+            </span>
+            <h4>
+              <strong>Android app</strong>
+            </h4>
+            <p class="text-faded mb-0">Check out our android app ...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Header -->
+    <header class="d-flex justify-content-center masthead img-background">
+      <div class="container text-center my-auto">
+        <h1 class="mb-1">Welcome {{ user.username  }}!!!! </h1>
+        <h3 class="mb-5">
+          <em>Let's predict virtually</em>
+        </h3>
+
+          {% if user.is_ordinary_user %}
+           <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'account:check symptoms' pk=1 %}">Start</a>
+         {% elif user.is_doctor %}
+              <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'account:analyze data' %}">Start</a>
+         {% endif %}
+
+      </div>
+      <div class="overlay"></div>
+    </header>
+
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Check symptoms
+{% endblock title %}
+
+{% block content %}
+    <div class="col-6 offset-3 card " >
+        <h3 class="card-header">Analysis result</h3>
+        <ul class="list-group">
+            <li class="list-group-item">angina &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if angina == True %}
+                    <span><i class="fa fa-check"></i></span>
+                {% else %}
+                    <span><i class="fa fa-times"></i></span>
+                {% endif %}</li>
+
+            <li class="list-group-item">heart attack &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if heart_attack == True%}
+                    <span ><i class="fas fa-check"></i></span>
+                {% else %}
+                    <span ><i class="fa fa-times"></i></span>
+                {% endif %}
+            </li>
+
+            <li class="list-group-item">dyspnea &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if dyspnea == True %}
+                    <i class="fa fa-check"></i>
+                {% else %}
+                    <i class="fa fa-times"></i>
+                {% endif %}</li>
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'main_base.html' %}
+{% load static %}
+
+{% block main-content %}
+
+    <div class="container-fluid">
+
+    {% if request.user.is_authenticated %}
+
+
+
+    <!-- Navigation -->
+    <a class="menu-toggle rounded" href="#">
+      <i class="fa fa-bars"></i>
+
+    </a>
+
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a class="js-scroll-trigger" href="#">
+
+        {% if user.is_ordinary_user %}
+          User
+        {% elif user.is_doctor %}
+          Doctor
+        {% endif %}
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{% url 'account:home' %}">Home</a>
+        </li>
+
+        {% if user.is_ordinary_user %}
+
+
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{% url 'account:check symptoms' %}">Check symptoms</a>
+        </li>
+
+        {% endif %}
+
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{% url 'account:analyze data' %}">Analyze Data</a>
+        </li>
+
+        {% if user.is_doctor %}
+
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{% url 'account:save_data' %}">Save Data</a>
+        </li>
+
+        {% endif %}
+
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="{% url 'account:logout' %}">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <div class="row">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
+    {% else %}
+        <h3>please login</h3>
+    {% endif %}
+
+
+    <!-- Call to Action -->
+
+    <!--
+    <section class="content-section bg-primary text-white">
+      <div class="container text-center">
+        <h2 class="mb-4">The buttons below are impossible to resist...</h2>
+        <a href="#" class="btn btn-xl btn-light mr-4">Click Me!</a>
+        <a href="#" class="btn btn-xl btn-dark">Look at Me!</a>
+      </div>
+    </section>
+--->
+
+    <!-- Footer -->
+
+    {% block js %}
+    {% endblock js %}
+    <footer class="footer text-center">
+      <div class="container">
+
+        <p class="text-muted small mb-0">Copyright &copy; Final project 2018</p>
+      </div>
+    </footer>
+
+
+
+</div>
+
+
+<!-- Custom scripts for this template -->
+  <script src="{% static 'account/js/stylish-portfolio.js' %}"></script>
+{% endblock main-content %}
+

@@ -1,0 +1,52 @@
+{% extends 'main_base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+
+
+{% block css-content %}
+
+    <style >
+        body {
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+        }
+    </style>
+{% endblock css-content %}
+
+{% block main-content %}
+
+    <div class="text-center">
+   <img class="mb-4" src="{% static 'account/logo.jpg' %}" alt="" width="100" height="100" >
+    <form  method="post" action="{% url 'account:login' %}">
+
+
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        {% if form.errors %}
+            <h3>Error</h3>
+        {% endif %}
+
+        {% if error %}
+            <h6 class="warning">{{ error }}</h6>
+        {% endif %}
+
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <div class="dropdown">
+        <button class="btn btn-lg btn-success btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Register</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{% url 'account:signup_doctor' %}">Register as a doctor</a>
+                <a class="dropdown-item" href="{% url 'account:signup_ordinary_user' %}">Register as an ordinary user</a>
+              </div>
+            </div>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
+
+    </form>
+
+    </div>
+
+
+
+{% endblock main-content %}

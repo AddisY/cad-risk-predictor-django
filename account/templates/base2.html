@@ -1,0 +1,62 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'account/bootstrap-4/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'account/css/stylish-portfolio.css' %}"/>
+
+    <script src="{% static 'account/js/jquery3.3.1.slim.js' %}"></script>
+    <script src="{% static 'account/js/popper.min.js' %}">
+
+    </script>
+    <script src="{% static 'account/bootstrap-4/js/bootstrap.min.js' %}"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+<div class="container">
+
+{% if request.user.is_authenticated %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Brand</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Add new patient</a>
+      </li>
+      {% if user.is_doctor %}
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Save data</a>
+      </li>
+      {% endif %}
+
+      <li class="nav-item">
+           <a class="nav-link" href="{% url 'account:logout' %}">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% else %}
+
+{% endif %}
+
+    <div class="row">
+        {% block content %}
+
+        {% endblock content%}
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'main_base.html' %}
+
+{% block title %}Sign up Doctor{% endblock title %}
+{% block main-content%}
+
+<div class="col-6 offset-3 card ">
+<h3>Sign up Ordinary user</h3>
+
+<form method="post" action="{% url 'account:signup_ordinary_user' %}">
+    {% csrf_token %}
+    {{  user_form.as_p }}
+    {{ ordianary_user_form.as_p }}
+    <input type="submit" class="btn btn-primary">
+</form>
+</div>
+{% endblock main-content %}

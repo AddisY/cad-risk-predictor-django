@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Check symptoms
+{% endblock title %}
+
+{% block content %}
+
+    <div class="col-6 offset-3 card " >
+
+     <h5 class="card-header bg-info ">Check symptoms</h5>
+        <form method="post" action="{% url 'account:check symptoms' %}">
+            <div id="form1">
+            {{ form1.as_p }}
+            </div>
+            <div id="form2" >
+                {{ form2.as_p }}
+                </div>
+            <div id="form3" >
+                {{ form3.as_p }}
+                </div>
+            <div id="form4" >
+                {{ form4.as_p }}
+                </div>
+            <div id="form5" >
+                {{ form5.as_p }}
+                </div>
+            {% csrf_token %}
+          <a type="button" id="btn-previous" class="btn btn-outline-primary" >Previous</a>
+          <a type="button" id="btn-next" class="btn btn-outline-primary"> Next</a>
+            <input type="submit" id="btn-finish" class="btn btn-primary"  value="Finish"/>
+
+        </form>
+    </div>
+
+{% endblock content %}
+
+{% block js %}
+    <script >
+        var previous=0;
+        var  next=1;
+        var current=1;
+
+        $(document).ready(function(){
+            $("#btn-previous").hide();
+            $("#btn-finish").hide();
+            $("#form2").hide();
+            $("#form3").hide();
+            $("#form4").hide();
+            $("#form5").hide();
+            $("#form6").hide();
+
+
+            $("#btn-previous").click(function(){
+                    if(current>1){
+                        current=current-1;
+
+                        switch (current){
+                            case 1:
+                                $("#btn-previous").hide();
+                                $("#form2").hide();
+                                $("#form1").show();
+
+                                break;
+                            case 2:
+                                $("#form2").show();
+                                $("#form3").hide();
+                                break;
+
+                            case 3:
+                                $("#form3").show();
+                                $("#form4").hide();
+                                break;
+                            case 4:
+                                $("#form4").show();
+                                $("#form5").hide();
+                                $("#btn-finish").hide();
+                                $("#btn-next").show();
+                                break;
+                        }
+                    }
+            });
+
+            $("#btn-next").click(function(){
+                if(current<6){
+                    current+=1;
+
+                    switch (current){
+                        case 2:
+                            $("#btn-previous").show();
+                            $("#form2").show();
+
+                            $("#form1").hide();
+                            break;
+                        case 3:
+                            $("#form3").show();
+                            $("#form2").hide();
+                            break;
+                        case 4:
+                            $("#form4").show();
+                            $("#form3").hide();
+                            break;
+                        case 5:
+                            $("#form5").show();
+                            $("#form4").hide();
+                            $("#btn-finish").show();
+                            $("#btn-next").hide();
+
+                            break;
+                    }
+                }
+              });
+        });
+    </script>
+{% endblock js %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Analyze data
+{% endblock title %}
+
+{% block content %}
+
+
+    <div class="col-6 offset-3 card " >
+    <h5 class="card-header bg-info">Saved data</h5>
+        <form method="post">
+            {{ data_form.as_p }}
+            {% csrf_token %}
+
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+
+{% endblock content %}
